@@ -1,0 +1,6 @@
+development:
+  adapter: postgresql
+  database: sinatra_development
+  username: postgres
+  password: 
+  host: localhost
