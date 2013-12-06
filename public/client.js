@@ -1,14 +1,3 @@
-
-// app.factory('formDataObject', function() {
-//     return function(data) {
-//         var fd = new FormData();
-//         angular.forEach(data, function(value, key) {
-//             fd.append(key, value);
-//         });
-//         return fd;
-//     };
-// });
-
 function ClientCtrl ($scope, $http) {
 	$scope.examples = [{text: 'Get list of company', url: 'companies'}, {text: 'Get company with id', url: 'company/18'}];
 	
