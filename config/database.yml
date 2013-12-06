@@ -7,7 +7,7 @@ development:
 
 production:
   adapter: postgresql
-  database: sinatra_development
+  database: d7dt6he3mgphe5
   username: plreqjinrpdmqz
   password: RC97USfJEZx6gGBUIISzcL64En
   host: ec2-174-129-21-42.compute-1.amazonaws.com
