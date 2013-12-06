@@ -52,6 +52,8 @@ post '/company', :provides	=> :json do
     	end
 
     	if tempfile && filename
+    		directory_name = "uploads"
+			Dir.mkdir(directory_name) unless File.exists?(directory_name)
 			FileUtils.cp(tempfile.path, "uploads/#{filename}")
 			company_params[:owner] = "uploads/#{filename}"
 			check_file_exist_and_save = true
