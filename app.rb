@@ -36,7 +36,6 @@ end
 # Create a new company
 post '/company', :provides	=> :json do
 	content_type :json
-	p params
 	company_params = accept_params(params, :company_id, :name, :address, :city, :country, :email, :phone_number, :owner)
 	check_file_exist_and_save = false
 
