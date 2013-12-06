@@ -5,6 +5,10 @@ require 'fileutils'
 require './config/environments'
 require './company'
 
+get '/' do
+	redirect '/index.html'
+end
+
 # Get a list of all companies
 get '/companies', :provides	=> :json do
 	content_type :json
@@ -21,7 +25,6 @@ end
 get '/company/:id', :provides => :json do
 	content_type :json
 
-	#company = Company.where(company_id: params[:id]).first
 	company = Company.where(id: params[:id]).first
 	if company
 		company.to_json
@@ -33,7 +36,7 @@ end
 # Create a new company
 post '/company', :provides	=> :json do
 	content_type :json
-
+	p params
 	company_params = accept_params(params, :company_id, :name, :address, :city, :country, :email, :phone_number, :owner)
 	check_file_exist_and_save = false
 
@@ -45,7 +48,7 @@ post '/company', :provides	=> :json do
 			tempfile = owner_file_info[:tempfile]
     		original_filename = owner_file_info[:filename] 
     		file_extension = File.extname(original_filename);
-    		filename_md5 = "#{Digest::MD5.hexdigest(original_filename)}"
+    		filename_md5 = "#{Digest::MD5.hexdigest(original_filename)}" + "#{Random.rand(10...420)}"
     		filename = "#{filename_md5}" + "#{file_extension}"
     	end
 
@@ -63,6 +66,7 @@ post '/company', :provides	=> :json do
 			company.save
 			{:status => '201'}.to_json
 		else
+			# To remove upload file if got invalid
 			{:status => '400'}.to_json
 		end
 	else
@@ -79,7 +83,6 @@ put '/company/:id', :provides => :json do
 	company_params = accept_params(params, :company_id, :name, :address, :city, :country, :email, :phone_number, :owner)
 	check_file_exist_and_save = false
 
-	#company =  Company.find(params[:id])
 	company = Company.where(id: params[:id]).first
 
 	if company
@@ -91,7 +94,7 @@ put '/company/:id', :provides => :json do
 				tempfile = owner_file_info[:tempfile]
 	    		original_filename = owner_file_info[:filename] 
 	    		file_extension = File.extname(original_filename);
-	    		filename_md5 = "#{Digest::MD5.hexdigest(original_filename)}"
+	    		filename_md5 = "#{Digest::MD5.hexdigest(original_filename)}" + "#{Random.rand(10...420)}"
 	    		filename = "#{filename_md5}" + "#{file_extension}"
 	    	end
 
@@ -123,8 +126,6 @@ end
 delete '/company/:id', :provides => :json do
 	content_type :json
 
-	#company = Company.where(company_id: params[:id]).first
-	#company = Company.find(params[:id])
 	company = Company.where(id: params[:id]).first
 
 	if company
