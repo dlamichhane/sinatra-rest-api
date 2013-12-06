@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+
+<html lang="en" ng-app>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Sinatra Restful API</title>
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+		<link rel="stylesheet" type="text/css" href="css/app.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.3/angular.min.js"></script>
+		<script src="js/angular_file_upload.js"></script>
+		<script src="/client.js"></script>
+	</head>
+	<body>
+		<div class="container">
+			<div data-ng-controller="ClientCtrl">
+				<form name='simpleForm' class="form-rest" ng-submit="get_post_info()">
+					<h2 class="form-rest-heading">Sinatra Restful API</h2>
+				 	<ul class="unstyled">
+			       		<li ng-repeat="example in examples">
+			          	<p class="">{{example.text}} - E.g. {{example.url}}</p>
+			        	</li>
+			      	</ul>
+					
+					<table>
+						<tr><td><input type="text" ng-model="curlName" class="input-block-level" placeholder="Put the API url" required></td></tr>
+						<tr><td><select ng-model="methodName" ng-click="changeMethod($event)" ng-options="method.label for method in methods">
+							<option value="">-- choose methods --</option>
+							</select>
+						</td></tr>
+						<tr>
+							<td><input name="company_id" ng-class='post_put' ng-show="show==true" type="text" ng-model="company_id" class="input-block-level" placeholder="Compnay ID" required></td>
+						</tr>
+						<tr>
+							<td><input name="name" ng-class='post_put' ng-show="show==true" type="text" ng-model="uname" class="input-block-level" placeholder="Name" required></td>
+						</tr>
+						<tr>
+							<td><input name="address" ng-show="show==true" type="text" ng-model="address" class="input-block-level" placeholder="Address" required></td>
+						</tr>
+						<tr>
+							<td><input name="city" ng-show="show==true" type="text" ng-model="city" class="input-block-level" placeholder="City" required></td>
+						</tr>
+						<tr>
+							<td><input name="country" ng-show="show==true" type="text" ng-model="country" class="input-block-level" placeholder="Country" required></td>
+						</tr>
+						<tr>
+							<td><input name="email" ng-show="show==true" type="text" ng-model="email" class="input-block-level" placeholder="Email"></td>
+						</tr>
+						<tr>
+							<td><input name="phone_number" ng-show="show==true" type="text" ng-model="phone_number" class="input-block-level" placeholder="Phone number"></td>
+						</tr>
+						<tr>
+							<td><input id="owner" name="owner" ng-show="show==true" type="file" ng-model="owner" class="input-block-level" placeholder="Owner" required></td>
+						</tr>
+					</table>
+
+					<button class="btn-primary btn-small">Send <i class="icon-circle-arrow-right"></i></button>
+				</form>
+
+				<div>
+					<pre>
+						<code>
+							{{datas}}	
+						</code>
+					</pre>		
+						
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
