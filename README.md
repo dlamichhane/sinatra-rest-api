@@ -16,3 +16,7 @@ Commands for curls
 	- Delete a company
 	- curl -i -H 'Accept: application/json' -X DELETE localhost:4567/company/4
 
+
+Demo
+============
+	- Heroku : http://sinatrarestapi.herokuapp.com/index.html
